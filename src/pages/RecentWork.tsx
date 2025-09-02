@@ -13,7 +13,7 @@ const RecentWork = ({ setTab }: RecentWorkProps) => {
       image: "/projects/finsage.png",
       description:
         "Led FastApi, CrewAI and LLM integrations using IBM watsonx.ai, enabling real-time credit usage insights and milestone-based offers - boosted engagement by ~25% in PoC.",
-      githubUrl: "",
+      githubUrl: "https://github.com/DibyashaktiMoharana/FinSage",
       liveUrl: "",
       technologies: [
         "FastAPI",
@@ -30,7 +30,7 @@ const RecentWork = ({ setTab }: RecentWorkProps) => {
       image: "/projects/trackntrash.png",
       description:
         "Engineered a real-time waste detection system using Python and OpenCV, delivering sub-200 millisecond response times for identifying trash overflow in bins.",
-      githubUrl: "",
+      githubUrl: "https://github.com/Track-N-Trash-Tech",
       liveUrl: "",
       technologies: ["Python", "OpenCV", "Machine Learning", "Computer Vision"],
     },
@@ -41,7 +41,7 @@ const RecentWork = ({ setTab }: RecentWorkProps) => {
       description:
         "Created a non-code solution for efficient management using React Native and FastAPI, collaborating with 15 developers. Deployed successful integrations with three third-party APIs, optimizing backend controller models to streamline data processing, improved data retrieval speed by 50% and facilitated real-time updates for over 200+ users.",
       githubUrl: "",
-      liveUrl: "",
+      liveUrl: "https://acmone.acmvit.in/",
       technologies: [
         "React Native",
         "FastAPI",
@@ -52,12 +52,12 @@ const RecentWork = ({ setTab }: RecentWorkProps) => {
     },
     {
       id: 4,
-      title: "CryptoHunt Backend, ACM-VIT",
-      image: "/projects/cryptohunt.png",
+      title: "Cryptic Hunt Backend, ACM-VIT",
+      image: "/projects/cryptichunt.png",
       description:
         "Developed using Go fiber and Gorm to handle 1200+ concurrent users with security measures, and efficient database management. Deployed after rigorous unit and integration testing on cloud platforms, achieving 95% test coverage with CI/CD pipelines and maintained 99.9% uptime, guaranteeing reliability.",
       githubUrl: "",
-      liveUrl: "",
+      liveUrl: "https://cryptichunt.acmvit.in/",
       technologies: [
         "Go",
         "Fiber",
@@ -104,7 +104,6 @@ const RecentWork = ({ setTab }: RecentWorkProps) => {
       <div className="space-y-6">
         {projects.map((project) => (
           <WholeProject
-            subTitle={project.subTitle}
             key={project.id}
             title={project.title}
             image={project.image}
