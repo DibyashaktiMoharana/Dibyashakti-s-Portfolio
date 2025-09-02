@@ -2,7 +2,6 @@
 import WholeProject from "../../components/WholeProject";
 import CustomCursor from "../../components/CustomCursor";
 import Container from "../../components/cards/Container";
-import BackgroundVideo from "../../components/BackgroundVideo";
 import MiniMusicPlayer from "../../components/MiniMusicPlayer";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -75,7 +74,6 @@ export default function RecentWorkPage() {
 
   return (
     <div className="min-h-screen py-8">
-      <BackgroundVideo />
       <CustomCursor />
       <Container>
         <motion.div

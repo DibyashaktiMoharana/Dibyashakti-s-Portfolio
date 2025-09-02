@@ -217,7 +217,8 @@ export default function MiniMusicPlayer() {
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="fixed bottom-6 right-6 z-10"
+            className="fixed bottom-6 right-6 z-10 cursor-auto"
+            data-cursor-disabled="true"
         >
             <AnimatePresence mode="wait">
                 {isExpanded ? (
@@ -232,7 +233,7 @@ export default function MiniMusicPlayer() {
                         {/* Header */}
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2">
-                                <Music className="w-4 h-4 text-gray-400" />
+                                <Music className="w-5 h-5 text-gray-400" />
                                 <span className="text-sm font-med text-gray-400">Now Playing</span>
                             </div>
                             <div className="flex items-center gap-2">
@@ -240,7 +241,7 @@ export default function MiniMusicPlayer() {
                                     onClick={togglePlaylist}
                                     className="text-gray-400 hover:text-white transition-colors p-1"
                                 >
-                                    <List className="w-4 h-4" />
+                                    <List className="w-5 h-5" />
                                 </button>
                                 <button
                                     onClick={toggleExpanded}
@@ -282,7 +283,7 @@ export default function MiniMusicPlayer() {
                                 max="100"
                                 value={progress}
                                 onChange={handleProgressChange}
-                                className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                                className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
                                 style={{
                                     background: `linear-gradient(to right, #a855f7 0%, #ec4899 ${progress}%, #374151 ${progress}%, #374151 100%)`
                                 }}
@@ -296,31 +297,31 @@ export default function MiniMusicPlayer() {
                                     onClick={prevSong}
                                     className="p-2 rounded-full hover:bg-white/10 transition-all text-gray-400 hover:text-white"
                                 >
-                                    <SkipBack className="w-4 h-4" />
+                                    <SkipBack className="w-6 h-6" />
                                 </button>
                                 <button
                                     onClick={togglePlayPause}
                                     className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
                                 >
-                                    {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+                                    {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 ml-0.5" />}
                                 </button>
                                 <button
                                     onClick={nextSong}
                                     className="p-2 rounded-full hover:bg-white/10 transition-all text-gray-400 hover:text-white"
                                 >
-                                    <SkipForward className="w-4 h-4" />
+                                    <SkipForward className="w-6 h-6" />
                                 </button>
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <Volume2 className="w-4 h-4 text-gray-400" />
+                                <Volume2 className="w-5 h-5 text-gray-400" />
                                 <input
                                     type="range"
                                     min="0"
                                     max="100"
                                     value={volume}
                                     onChange={handleVolumeChange}
-                                    className="w-20 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                                    className="w-32 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                                     style={{
                                         background: `linear-gradient(to right, #a855f7 0%, #a855f7 ${volume}%, #374151 ${volume}%, #374151 100%)`
                                     }}
@@ -337,6 +338,7 @@ export default function MiniMusicPlayer() {
                         transition={{ duration: 0.2 }}
                         onClick={toggleExpanded}
                         className="bg-[#1c1c1d]/90 backdrop-blur-md rounded-full border-[2px] border-[#303030] p-4 pr-6 flex items-center gap-3 hover:bg-[#232324]/90 hover:border-[#404040] transition-all cursor-pointer shadow-xl"
+                        data-cursor-disabled="true"
                     >
                         <div className="relative">
                             <Image
@@ -366,7 +368,7 @@ export default function MiniMusicPlayer() {
                                 }}
                                 className="p-2 rounded-full hover:bg-white/10 transition-all text-white"
                             >
-                                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
                             </button>
                         </div>
                     </motion.div>
