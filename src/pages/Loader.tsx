@@ -21,34 +21,83 @@ function Loader({ onComplete }: LoaderProps) {
   const [contentLoaded, setContentLoaded] = useState(false);
   const [hasShownAtLeastOneGreeting, setHasShownAtLeastOneGreeting] = useState(false);
 
-  // Check if all content is loaded
+  // Check if all content (fonts, images, background video) is loaded
   useEffect(() => {
-    const checkContentLoaded = () => {
-      // Check if document is ready and all images/resources are loaded
-      if (document.readyState === 'complete') {
-        // Additional check for fonts and images
-        Promise.all([
-          document.fonts.ready,
-          // Wait for any pending images
-          ...Array.from(document.images).map(img => {
-            if (img.complete) return Promise.resolve();
-            return new Promise(resolve => {
-              img.onload = img.onerror = resolve;
-            });
-          })
-        ]).then(() => {
-          setTimeout(() => setContentLoaded(true), 500); // Small delay to ensure everything is rendered
-        });
-      } else {
-        const handleLoad = () => {
-          setTimeout(() => setContentLoaded(true), 500);
-        };
-        window.addEventListener('load', handleLoad);
-        return () => window.removeEventListener('load', handleLoad);
+    let videoReadyResolve: () => void;
+    const videoReady = new Promise<void>((resolve) => {
+      videoReadyResolve = resolve;
+    });
+
+    // Try to find a background <video> that we mount in the client BackgroundVideo component
+    const findAndWireVideo = () => {
+      const video = document.querySelector('video');
+      if (!video) return false;
+
+      // If already ready enough to play through, resolve immediately
+      if ((video as HTMLVideoElement).readyState >= 3) {
+        videoReadyResolve();
+        return true;
       }
+
+      const onCanPlayThrough = () => {
+        videoReadyResolve();
+        cleanup();
+      };
+      const onError = () => {
+        // Do not block loader in case of video error; resolve anyway
+        videoReadyResolve();
+        cleanup();
+      };
+
+      const cleanup = () => {
+        video.removeEventListener('canplaythrough', onCanPlayThrough);
+        video.removeEventListener('error', onError);
+      };
+
+      video.addEventListener('canplaythrough', onCanPlayThrough, { once: true });
+      video.addEventListener('error', onError, { once: true });
+      return true;
+    };
+
+    // Observe DOM briefly to catch late-mounted video
+    let observer: MutationObserver | null = null;
+    if (!findAndWireVideo()) {
+      observer = new MutationObserver(() => {
+        if (findAndWireVideo()) {
+          observer?.disconnect();
+        }
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    }
+
+    const checkContentLoaded = () => {
+      const fontsReady = document.fonts?.ready ?? Promise.resolve();
+      const imagesReady = Promise.all(
+        Array.from(document.images).map((img) =>
+          img.complete
+            ? Promise.resolve()
+            : new Promise<void>((resolve) => {
+              img.onload = img.onerror = () => resolve();
+            })
+        )
+      );
+
+      // When DOM ready, wait for fonts, images and video readiness
+      const whenDomReady = new Promise<void>((resolve) => {
+        if (document.readyState === 'complete') resolve();
+        else window.addEventListener('load', () => resolve(), { once: true });
+      });
+
+      Promise.all([whenDomReady, fontsReady, imagesReady, videoReady])
+        .then(() => new Promise((r) => setTimeout(r, 400)))
+        .then(() => setContentLoaded(true));
     };
 
     checkContentLoaded();
+
+    return () => {
+      observer?.disconnect();
+    };
   }, []);
 
   // Safety net - but longer since we're waiting for content
