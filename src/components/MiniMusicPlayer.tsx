@@ -136,12 +136,16 @@ export default function MiniMusicPlayer() {
         }
     }, [currentSongIndex, currentSong]);
 
-    const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newTime = (parseFloat(e.target.value) / 100) * duration;
+    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const raw = parseFloat(e.target.value);
+        const safeDuration = isFinite(duration) && duration > 0 ? duration : 0;
+        const newTime = Math.max(0, Math.min(raw, safeDuration));
         if (musicPlayerState.audioElement) {
             musicPlayerState.audioElement.currentTime = newTime;
-            musicPlayerState.currentTime = newTime;
         }
+        // update immediately for responsive UI; timeupdate will also sync
+        musicPlayerState.currentTime = newTime;
+        musicPlayerState.listeners.forEach(l => l());
     };
 
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
@@ -279,13 +283,13 @@ export default function MiniMusicPlayer() {
                         <div className="mb-4">
                             <input
                                 type="range"
-                                min="0"
-                                max="100"
-                                value={progress}
-                                onChange={handleProgressChange}
+                                min={0}
+                                max={Math.max(0, Math.floor(duration))}
+                                value={Math.max(0, Math.floor(currentTime))}
+                                onChange={handleSeek}
                                 className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
                                 style={{
-                                    background: `linear-gradient(to right, #a855f7 0%, #ec4899 ${progress}%, #374151 ${progress}%, #374151 100%)`
+                                    background: `linear-gradient(to right, #a855f7 0%, #ec4899 ${(progress)}%, #374151 ${(progress)}%, #374151 100%)`
                                 }}
                             />
                         </div>
