@@ -10,10 +10,10 @@ const LiveGradientBackground = () => {
                 className="absolute inset-0"
                 animate={{
                     background: [
-                        "radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
-                        "radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
-                        "radial-gradient(circle at 40% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 60% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), radial-gradient(circle at 20% 60%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
-                        "radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)"
+                        "radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.25) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.25) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.25) 0%, transparent 50%)",
+                        "radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.25) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.25) 0%, transparent 50%)",
+                        "radial-gradient(circle at 40% 20%, rgba(168, 85, 247, 0.25) 0%, transparent 50%), radial-gradient(circle at 60% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 50%), radial-gradient(circle at 20% 60%, rgba(59, 130, 246, 0.25) 0%, transparent 50%)",
+                        "radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.25) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.25) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.25) 0%, transparent 50%)"
                     ]
                 }}
                 transition={{
@@ -25,9 +25,9 @@ const LiveGradientBackground = () => {
 
             {/* Floating orbs */}
             <motion.div
-                className="absolute w-96 h-96 rounded-full opacity-20"
+                className="absolute w-96 h-96 rounded-full opacity-30"
                 style={{
-                    background: "radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, transparent 70%)",
                     filter: "blur(40px)"
                 }}
                 animate={{
@@ -43,9 +43,9 @@ const LiveGradientBackground = () => {
             />
 
             <motion.div
-                className="absolute w-80 h-80 rounded-full opacity-15"
+                className="absolute w-80 h-80 rounded-full opacity-25"
                 style={{
-                    background: "radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, transparent 70%)",
                     filter: "blur(50px)"
                 }}
                 animate={{
@@ -62,9 +62,9 @@ const LiveGradientBackground = () => {
             />
 
             <motion.div
-                className="absolute w-72 h-72 rounded-full opacity-10"
+                className="absolute w-72 h-72 rounded-full opacity-20"
                 style={{
-                    background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)",
                     filter: "blur(60px)"
                 }}
                 animate={{
