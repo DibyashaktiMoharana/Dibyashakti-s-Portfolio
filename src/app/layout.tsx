@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
+import LiveGradientBackground from "../components/LiveGradientBackground";
 
 import "./globals.css";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="antialiased font-inter relative">
+        <LiveGradientBackground />
         {children}
       </body>
     </html>

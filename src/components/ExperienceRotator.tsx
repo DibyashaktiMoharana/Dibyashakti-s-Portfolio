@@ -25,7 +25,7 @@ export default function ExperienceRotator() {
   }, []);
 
   return (
-    <div className="flex flex-col items-start justify-center h-full pl-6">
+    <div className="flex flex-col items-start justify-center h-full ">
       <div className="text-left">
         <motion.div
           initial="visible"
