@@ -28,6 +28,15 @@ export default function ExperiencePage() {
       description:
         "Implemented efficient solutions, resulting in a 45% improvement in complaint management systems.\nLed a team of 12 to revamp the customer support system, streamlining processes and resolving 100+ customer tickets.",
     },
+    {
+      position: "Developer (Senior Core)",
+      company: "ACM-VIT",
+      duration: "April 2023 - June 2025",
+      employmentType: "Student Chapter",
+      companyUrl: "https://acmvit.in",
+      description:
+        "Developed and maintained Full Stack applications.\nCollaborated with a team of 10+ developers to build web applications for internal use and events.\nWorked on multiple projects involving both Mobile and web applications with scalable deployed backend solutions.",
+    },
   ];
 
   const pageVariants = {
