@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, SkipForward, SkipBack, Volume2, Music, List } from 'lucide-react';
 import Image from 'next/image';
@@ -68,6 +68,53 @@ export default function MiniMusicPlayer() {
 
     const currentSong = SONGS[currentSongIndex];
 
+    // Define callback functions first
+    const togglePlayPause = useCallback(() => {
+        const newPlayState = !musicPlayerState.isPlaying;
+        setIsPlaying(newPlayState);
+        musicPlayerState.isPlaying = newPlayState;
+    }, []);
+
+    const nextSong = useCallback(() => {
+        const wasPlaying = musicPlayerState.isPlaying;
+        const newIndex = (musicPlayerState.currentSongIndex + 1) % SONGS.length;
+        setCurrentSongIndex(newIndex);
+        musicPlayerState.currentSongIndex = newIndex;
+
+        if (wasPlaying) {
+            setTimeout(() => {
+                setIsPlaying(true);
+                musicPlayerState.isPlaying = true;
+            }, 100);
+        }
+    }, []);
+
+    const prevSong = useCallback(() => {
+        const wasPlaying = musicPlayerState.isPlaying;
+        const newIndex = (musicPlayerState.currentSongIndex - 1 + SONGS.length) % SONGS.length;
+        setCurrentSongIndex(newIndex);
+        musicPlayerState.currentSongIndex = newIndex;
+
+        if (wasPlaying) {
+            setTimeout(() => {
+                setIsPlaying(true);
+                musicPlayerState.isPlaying = true;
+            }, 100);
+        }
+    }, []);
+
+    const increaseVolume = useCallback(() => {
+        const newVolume = Math.min(100, musicPlayerState.volume + 10);
+        setVolume(newVolume);
+        musicPlayerState.volume = newVolume;
+    }, []);
+
+    const decreaseVolume = useCallback(() => {
+        const newVolume = Math.max(0, musicPlayerState.volume - 10);
+        setVolume(newVolume);
+        musicPlayerState.volume = newVolume;
+    }, []);
+
     // Subscribe to global state changes
     useEffect(() => {
         const updateState = () => {
@@ -86,6 +133,53 @@ export default function MiniMusicPlayer() {
             musicPlayerState.listeners.delete(updateState);
         };
     }, []);
+
+    // Keyboard event listeners
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            // Prevent default spacebar behavior when music player is active
+            if (event.code === 'Space') {
+                event.preventDefault();
+                togglePlayPause();
+            }
+            // Arrow keys for navigation
+            else if (event.code === 'ArrowRight') {
+                event.preventDefault();
+                nextSong();
+            }
+            else if (event.code === 'ArrowLeft') {
+                event.preventDefault();
+                prevSong();
+            }
+            // Volume controls
+            else if (event.code === 'ArrowUp') {
+                event.preventDefault();
+                increaseVolume();
+            }
+            else if (event.code === 'ArrowDown') {
+                event.preventDefault();
+                decreaseVolume();
+            }
+            // Escape to close expanded player or playlist
+            else if (event.code === 'Escape') {
+                if (musicPlayerState.showPlaylist) {
+                    setShowPlaylist(false);
+                    musicPlayerState.showPlaylist = false;
+                } else if (musicPlayerState.isExpanded) {
+                    setIsExpanded(false);
+                    musicPlayerState.isExpanded = false;
+                }
+            }
+        };
+
+        // Add event listener
+        window.addEventListener('keydown', handleKeyDown);
+
+        // Cleanup
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [togglePlayPause, nextSong, prevSong, increaseVolume, decreaseVolume]);
 
     // Update global state when local state changes
     useEffect(() => {
@@ -150,34 +244,6 @@ export default function MiniMusicPlayer() {
 
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-    const nextSong = () => {
-        const wasPlaying = isPlaying;
-        const newIndex = (currentSongIndex + 1) % SONGS.length;
-        setCurrentSongIndex(newIndex);
-        musicPlayerState.currentSongIndex = newIndex;
-
-        if (wasPlaying) {
-            setTimeout(() => {
-                setIsPlaying(true);
-                musicPlayerState.isPlaying = true;
-            }, 100);
-        }
-    };
-
-    const prevSong = () => {
-        const wasPlaying = isPlaying;
-        const newIndex = (currentSongIndex - 1 + SONGS.length) % SONGS.length;
-        setCurrentSongIndex(newIndex);
-        musicPlayerState.currentSongIndex = newIndex;
-
-        if (wasPlaying) {
-            setTimeout(() => {
-                setIsPlaying(true);
-                musicPlayerState.isPlaying = true;
-            }, 100);
-        }
-    };
-
     const selectSong = (index: number) => {
         const wasPlaying = isPlaying;
         setCurrentSongIndex(index);
@@ -191,12 +257,6 @@ export default function MiniMusicPlayer() {
                 musicPlayerState.isPlaying = true;
             }, 100);
         }
-    };
-
-    const togglePlayPause = () => {
-        const newPlayState = !isPlaying;
-        setIsPlaying(newPlayState);
-        musicPlayerState.isPlaying = newPlayState;
     };
 
     const toggleExpanded = () => {
