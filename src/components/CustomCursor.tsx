@@ -30,7 +30,7 @@ const CustomCursor = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+      className="fixed top-0 left-0 pointer-events-none z-[80] hidden md:block"
       animate={{
         x: mousePosition.x - CURSOR_CONFIG.OFFSET.x,
         y: mousePosition.y - CURSOR_CONFIG.OFFSET.y,

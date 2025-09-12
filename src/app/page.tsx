@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Container from "../components/cards/Container";
 import Loader from "../pages/Loader";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
+import TerminalButton from "../components/TerminalButton";
 
 export default function HomePage() {
   const [showLoader, setShowLoader] = useState(true);
@@ -32,6 +33,7 @@ export default function HomePage() {
         {showLoader ? <Loader onComplete={handleLoaderComplete} /> : <Home />}
       </Container>
       {!showLoader && <MiniMusicPlayer />}
+      {!showLoader && <TerminalButton />}
     </div>
   );
 }
