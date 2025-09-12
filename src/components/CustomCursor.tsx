@@ -42,7 +42,7 @@ const CustomCursor = () => {
       }}
     >
       <RedirectCursor isVisible={isRedirect} />
-      <NormalCursor isVisible={!isRedirect} isHovering={isHovering} />
+      <NormalCursor isVisible={!isRedirect} isHovering={isHovering} scale={getScale()} />
     </motion.div>
   );
 };

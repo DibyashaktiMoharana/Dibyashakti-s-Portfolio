@@ -9,12 +9,12 @@ export interface Song {
 export const SONGS: Song[] = [
   {
     id: "1",
-    title: "I Wanna Be Yours",
-    artist: "Arctic Monkeys",
+    title: "Tum Ho Toh",
+    artist: "Vishal Mishra",
     audioUrl:
-      "https://aac.saavncdn.com/915/ac73938eb6ed3d2dffa1b88e7eacc34d_320.mp4",
+      "https://aac.saavncdn.com/598/55a75f7dd5eb4ff90d8c46ba727912ae_320.mp4",
     albumArt:
-      "https://c.saavncdn.com/915/I-Wanna-Be-Yours-Violin-Unknown-2023-20250108075659-500x500.jpg",
+      "https://c.saavncdn.com/485/Barbaad-From-Saiyaara-Hindi-2025-20250610140401-500x500.jpg",
   },
   {
     id: "2",
@@ -34,4 +34,13 @@ export const SONGS: Song[] = [
     albumArt:
       "https://c.saavncdn.com/485/Barbaad-From-Saiyaara-Hindi-2025-20250610140401-500x500.jpg",
   },
+  {
+    id: "4",
+    title: "Jaan le gayi",
+    artist: "Sonu Nigam & Vishal Dadlani",
+    audioUrl:
+      "https://aac.saavncdn.com/251/f888f80dbed47f96d350b1e3514a253e_320.mp4",
+    albumArt:
+      "https://c.saavncdn.com/251/Bhoomi-2024-Hindi-2025-20250107194901-500x500.jpg",
+  }
 ];

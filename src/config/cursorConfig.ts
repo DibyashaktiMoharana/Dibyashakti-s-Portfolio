@@ -2,10 +2,10 @@ export const CURSOR_CONFIG = {
   // Scale values
   SCALE: {
     DEFAULT: 1,
-    IN_SECTION: 2,
-    MOUSE_DOWN: 1.8,
+    IN_SECTION: 1.4,
+    MOUSE_DOWN: 1.2,
   },
-  
+
   // Animation settings
   ANIMATION: {
     MAIN: {
@@ -26,13 +26,13 @@ export const CURSOR_CONFIG = {
       damping: 15,
     },
   },
-  
+
   // Positioning offset
   OFFSET: {
     x: 16,
     y: 16,
   },
-  
+
   // Selectors
   SELECTORS: {
     REDIRECT: '[data-redirect="true"]',

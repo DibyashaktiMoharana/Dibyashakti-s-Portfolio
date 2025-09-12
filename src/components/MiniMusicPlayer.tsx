@@ -245,13 +245,13 @@ export default function MiniMusicPlayer() {
                                     onClick={togglePlaylist}
                                     className="text-gray-400 hover:text-white transition-colors p-1"
                                 >
-                                    <List className="w-5 h-5" />
+                                    <List className="w-7 h-7" />
                                 </button>
                                 <button
                                     onClick={toggleExpanded}
                                     className="text-gray-400 hover:text-white transition-colors p-1"
                                 >
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M6 9l6 6 6-6" />
                                     </svg>
                                 </button>
@@ -403,7 +403,7 @@ export default function MiniMusicPlayer() {
                                 </svg>
                             </button>
                         </div>
-                        <div className="space-y-2 max-h-48 overflow-y-auto">
+                        <div className="space-y-2 max-h-80 overflow-y-auto">
                             {SONGS.map((song, index) => (
                                 <div
                                     key={song.id}

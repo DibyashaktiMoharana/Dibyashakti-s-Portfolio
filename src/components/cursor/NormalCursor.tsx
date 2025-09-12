@@ -4,9 +4,10 @@ import { CURSOR_CONFIG } from "../../config/cursorConfig";
 interface NormalCursorProps {
   isVisible: boolean;
   isHovering: boolean;
+  scale: number;
 }
 
-export const NormalCursor = ({ isVisible, isHovering }: NormalCursorProps) => {
+export const NormalCursor = ({ isVisible, isHovering, scale }: NormalCursorProps) => {
   return (
     <>
       {/* Main dot */}
@@ -14,7 +15,7 @@ export const NormalCursor = ({ isVisible, isHovering }: NormalCursorProps) => {
         initial={false}
         animate={{
           opacity: isVisible ? 1 : 0,
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering ? 1.2 : 1,
         }}
         transition={{
           type: "spring",
@@ -28,7 +29,7 @@ export const NormalCursor = ({ isVisible, isHovering }: NormalCursorProps) => {
         initial={false}
         animate={{
           opacity: isVisible ? (isHovering ? 0.6 : 0.3) : 0,
-          scale: isHovering ? 2 : 1,
+          scale: isHovering ? scale : 1,
         }}
         transition={{
           type: "spring",
