@@ -48,7 +48,7 @@ export const SONGS: Song[] = [
     title: "Bhala paye tate re",
     artist: "Kuldeep Pattanaik",
     audioUrl:
-      "https://aac.saavncdn.com/251/f888f80dbed47f96d350b1e3514a253e_320.mp4",
+      "https://aac.saavncdn.com/875/c052445e9c2b13cf9ec14a09910cc162_320.mp4",
     albumArt:
       "https://c.saavncdn.com/875/Bhala-Paaye-Tate-Re-Oriya-2022-20220706170811-500x500.jpg",
   },
