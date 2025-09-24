@@ -42,5 +42,23 @@ export const SONGS: Song[] = [
       "https://aac.saavncdn.com/251/f888f80dbed47f96d350b1e3514a253e_320.mp4",
     albumArt:
       "https://c.saavncdn.com/251/Bhoomi-2024-Hindi-2025-20250107194901-500x500.jpg",
-  }
+  },
+  {
+    id: "5",
+    title: "Bhala paye tate re",
+    artist: "Kuldeep Pattanaik",
+    audioUrl:
+      "https://aac.saavncdn.com/251/f888f80dbed47f96d350b1e3514a253e_320.mp4",
+    albumArt:
+      "https://c.saavncdn.com/875/Bhala-Paaye-Tate-Re-Oriya-2022-20220706170811-500x500.jpg",
+  },
+ {
+    id: "6",
+    title: "A thousand years",
+    artist: "Christina Perri",
+    audioUrl:
+      "https://aac.saavncdn.com/912/3d068ce7502fc7d4bb839d8ed98fc9eb_320.mp4",
+    albumArt:
+      "https://c.saavncdn.com/912/A-Thousand-Years-English-2011-20200822053427-500x500.jpg",
+  },
 ];
