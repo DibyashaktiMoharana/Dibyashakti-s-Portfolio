@@ -32,7 +32,7 @@ export default function ExperienceRotator() {
           animate="visible"
           className="mb-4 flex flex-row justify-start items-center gap-4 "
         >
-          <h2 className="text-3xl font-semibold text-white">I know </h2>
+          <h2 className="text-3xl font-semibold text-white">I do </h2>
 
           <div className="h-16 flex items-center justify-start">
             <AnimatePresence mode="wait">
